@@ -4,7 +4,7 @@ import { CreateTodoDto } from './dto/create-todo.dto';
 import { UpdateTodoDto } from './dto/update-todo.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Todo } from 'src/schemas/todo.schemas';
+import { Todo } from '../schemas/todo.schemas';
 
 @Injectable()
 export class TodoService {

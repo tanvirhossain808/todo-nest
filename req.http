@@ -1,18 +1,18 @@
 ###add user
 
-POST http://localhost:3000/todo
+POST https://u-nine-beta.vercel.app/todo
 Content-Type: application/json
 
 {
-  "title": "game",
-  "description": "Need to play baseball",
+  "title": 3,
+  "description": 23,
   "completed":false
 }
 
 
 ###Find all todos
 
-get http://localhost:3000/todo
+get https://u-nine-beta.vercel.app/todo
 
 
 
@@ -22,19 +22,19 @@ get http://localhost:3000/todo
 
 ### find a current user
 
-get http://localhost:3000/todo/67b2e2f100ed18ec6a8cbd80
+get http://localhost:3000/todo/67b2e65162b40e1a7f349a58
 
 
 
 
 ### Update todo
 
-PATCH  http://localhost:3000/todo/67b2e2f100ed18ec6a8cbd80
+PATCH  https://u-nine-beta.vercel.app/todo/67b2e65162b40e1a7f349a58
 Content-Type: application/json
 
 
 {
-    "title": "PLaying game",
+    "title": "Playing todo",
     "description": "Need to play cricket",
     "completed": false
 }
