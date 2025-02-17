@@ -1,0 +1,53 @@
+###add user
+
+POST http://localhost:3000/todo
+Content-Type: application/json
+
+{
+  "title": "game",
+  "description": "Need to play baseball",
+  "completed":false
+}
+
+
+###Find all todos
+
+get http://localhost:3000/todo
+
+
+
+
+
+
+
+### find a current user
+
+get http://localhost:3000/todo/67b2e2f100ed18ec6a8cbd80
+
+
+
+
+### Update todo
+
+PATCH  http://localhost:3000/todo/67b2e2f100ed18ec6a8cbd80
+Content-Type: application/json
+
+
+{
+    "title": "PLaying game",
+    "description": "Need to play cricket",
+    "completed": false
+}
+
+
+### Delete a todo
+
+DELETE   http://localhost:3000/todo/67b2e2f100ed18ec6a8cbd80
+Content-Type: application/json
+
+
+{
+    "title": "PLaying game",
+    "description": "Need to play cricket",
+    "completed": false
+}
