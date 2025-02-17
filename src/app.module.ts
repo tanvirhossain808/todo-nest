@@ -9,9 +9,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    MongooseModule.forRoot(
-      'mongodb+srv://tanvirhossen808:20202020@cluster0.ckxxb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0s',
-    ),
+    MongooseModule.forRoot(process.env.MONGO_URI),
     TodoModule,
   ],
   controllers: [AppController],
