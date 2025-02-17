@@ -1,6 +1,6 @@
 ###add user
 
-POST https://u-nine-beta.vercel.app/todo
+POST https://todo-nest-2smq.vercel.app/todo
 Content-Type: application/json
 
 {
@@ -12,7 +12,7 @@ Content-Type: application/json
 
 ###Find all todos
 
-get https://u-nine-beta.vercel.app/todo
+get https://todo-nest-2smq.vercel.app/todo
 
 
 
@@ -22,14 +22,14 @@ get https://u-nine-beta.vercel.app/todo
 
 ### find a current user
 
-get http://localhost:3000/todo/67b2e65162b40e1a7f349a58
+get https://todo-nest-2smq.vercel.app/todo/67b2ff16ef09c11bebb36a0b
 
 
 
 
 ### Update todo
 
-PATCH  https://u-nine-beta.vercel.app/todo/67b2e65162b40e1a7f349a58
+PATCH  https://todo-nest-2smq.vercel.app/todo/67b2ff16ef09c11bebb36a0b
 Content-Type: application/json
 
 
@@ -42,7 +42,7 @@ Content-Type: application/json
 
 ### Delete a todo
 
-DELETE   http://localhost:3000/todo/67b2e2f100ed18ec6a8cbd80
+DELETE   https://todo-nest-2smq.vercel.app/todo/67b2ff16ef09c11bebb36a0b
 Content-Type: application/json
 
 
