@@ -1,0 +1,63 @@
+###Register a user
+
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+  "email":"tanvir@gmail.com",
+  "password":"b@b.com"
+}
+
+
+###login a user
+
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email":"tanvir@gmail.com",
+  "password":"b@b.com"
+}
+
+
+###Find all todos
+
+get https://todo-nest-2smq.vercel.app/todo
+
+
+
+
+
+
+
+### find a current user
+
+get https://todo-nest-2smq.vercel.app/todo/67b2ff16ef09c11bebb36a0b
+
+
+
+
+### Update todo
+
+PATCH  https://todo-nest-2smq.vercel.app/todo/67b2ff16ef09c11bebb36a0b
+Content-Type: application/json
+
+
+{
+    "title": "Playing todo",
+    "description": "Need to play cricket",
+    "completed": false
+}
+
+
+### Delete a todo
+
+DELETE   https://todo-nest-2smq.vercel.app/todo/67b2ff16ef09c11bebb36a0b
+Content-Type: application/json
+
+
+{
+    "title": "PLaying game",
+    "description": "Need to play cricket",
+    "completed": false
+}

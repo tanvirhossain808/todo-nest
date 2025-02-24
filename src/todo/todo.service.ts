@@ -9,6 +9,10 @@ import { Todo } from '../schemas/todo.schemas';
 @Injectable()
 export class TodoService {
   constructor(@InjectModel(Todo.name) private todoModel: Model<Todo>) {}
+  async createUser(email: string, password: string) {
+    const newUser = new this.todoModel({ email, password });
+    return newUser.save();
+  }
   async create(createTodoDto: CreateTodoDto) {
     const newUser = new this.todoModel(createTodoDto);
     return newUser.save();
@@ -22,6 +26,11 @@ export class TodoService {
   async findOne(id: string) {
     const currentUser = await this.todoModel.findById(id);
     if (!currentUser) new HttpException('User not found', 400);
+    return currentUser;
+  }
+  async findOneByEmail(email: string) {
+    const currentUser = await this.todoModel.findOne({ email });
+    console.log(currentUser, 'currentUser');
     return currentUser;
   }
 
