@@ -1,9 +1,9 @@
 /* eslint-disable prettier/prettier */
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { TodoService } from 'src/todo/todo.service';
+import { TodoService } from '../../src/todo/todo.service';
 import * as bcrypt from 'bcrypt';
-import { saltOrRounds } from 'src/constant/constant';
+import { saltOrRounds } from '../../src/constant/constant';
 import { Response } from 'express';
 
 @Injectable()
