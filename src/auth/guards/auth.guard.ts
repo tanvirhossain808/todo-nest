@@ -2,6 +2,7 @@
 import {
   CanActivate,
   ExecutionContext,
+  ForbiddenException,
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
@@ -9,12 +10,16 @@ import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
 import { IS_PUBLIC_KEY } from '../../common/decorators/public.decorator';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { User } from 'src/schemas/user.schemas';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
   constructor(
     private jwtService: JwtService,
     private reflector: Reflector,
+    @InjectModel('User') private readonly userModel: Model<User>,
   ) {}
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const isPublic = this.reflector.getAllAndOverride<boolean>(IS_PUBLIC_KEY, [
@@ -37,7 +42,11 @@ export class AuthGuard implements CanActivate {
       const payload = await this.jwtService.verifyAsync(token, {
         secret: process.env.JWT_SECRET,
       });
-      console.log(process.env.JWT_SECRET, 'sec');
+      const { sub } = payload;
+      const userExists = await this.userModel.findById(sub).exec();
+      if (!userExists) {
+        throw new ForbiddenException('User not found');
+      }
       console.log(payload, 'payload');
       request['user'] = payload;
     } catch (error) {
@@ -50,7 +59,7 @@ export class AuthGuard implements CanActivate {
     console.log(request.headers, 'headers');
     const { jwt } = request.cookies || {};
     const [type, token] = jwt?.split(' ') ?? [];
-    // console.log(token, 'tokenaaa');
+    console.log(token, 'tokenaaa');
     return type === 'Bearer' ? token : undefined;
   }
 

@@ -13,13 +13,15 @@ export class TodoService {
     const newUser = new this.todoModel({ email, password });
     return newUser.save();
   }
-  async create(createTodoDto: CreateTodoDto) {
-    const newUser = new this.todoModel(createTodoDto);
+  async create(createTodoDto: CreateTodoDto, id: string) {
+    const newUser = new this.todoModel({ createTodoDto, user: id });
     return newUser.save();
   }
 
-  async findAll() {
-    const allUser = await this.todoModel.find();
+  async findAll(id: string) {
+    const allUser = await this.todoModel
+      .find({ user: id })
+      .select('id title description completed');
     return allUser;
   }
 

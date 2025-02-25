@@ -1,23 +1,19 @@
 /* eslint-disable prettier/prettier */
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Document, Types } from 'mongoose';
 
 @Schema({ timestamps: true })
 export class Todo extends Document {
-  @Prop({ required: true, unique: true })
-  email: string;
-
-  @Prop({ required: true, minlength: 4, maxlength: 400 })
-  password: string;
-
   @Prop({ required: false })
   title: string;
 
-  @Prop({ required: false })
+  @Prop({ required: true })
   description: string;
 
-  @Prop({ default: false })
+  @Prop({ required: true, default: false })
   completed: boolean;
+  @Prop({ unique: true, type: Types.ObjectId, ref: 'User', required: true })
+  user: string;
 }
 
 export const TodoSchema = SchemaFactory.createForClass(Todo);

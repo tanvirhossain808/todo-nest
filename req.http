@@ -1,6 +1,6 @@
 ###add user
 
-POST https://todo-nest-2smq.vercel.app/todo
+POST http://localhost:3000/todo
 Content-Type: application/json
 
 {

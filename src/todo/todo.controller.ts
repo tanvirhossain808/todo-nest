@@ -7,25 +7,30 @@ import {
   Patch,
   Param,
   Delete,
+  Req,
 } from '@nestjs/common';
 import { TodoService } from './todo.service';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { UpdateTodoDto } from './dto/update-todo.dto';
-import { Public } from '../../src/common/decorators/public.decorator';
+import { Public } from 'src/common/decorators/public.decorator';
+import { CustomRequest } from 'src/common/decorators/interfaces/custom-request.interface';
 
 @Controller('todo')
 export class TodoController {
   constructor(private todoService: TodoService) {}
   @Post()
-  async create(@Body() createTodoDto: CreateTodoDto) {
-    return this.todoService.create(createTodoDto);
-    // return user.save();
+  async create(
+    @Body() createTodoDto: CreateTodoDto,
+    @Req() request: CustomRequest,
+  ) {
+    console.log(request.user);
+    return this.todoService.create(createTodoDto, request.user.sub);
   }
 
-  @Public()
   @Get()
-  findAll() {
-    return this.todoService.findAll();
+  async findAll(@Req() request: CustomRequest) {
+    console.log(request.user, 'request');
+    return this.todoService.findAll(request.user.sub);
   }
 
   @Get(':id')
