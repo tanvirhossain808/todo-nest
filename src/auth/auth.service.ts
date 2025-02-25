@@ -1,9 +1,5 @@
 /* eslint-disable prettier/prettier */
-import {
-  Injectable,
-  NotFoundException,
-  UnauthorizedException,
-} from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { TodoService } from 'src/todo/todo.service';
 import * as bcrypt from 'bcrypt';
@@ -17,10 +13,10 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
   async login(email: string, password: string, res: Response): Promise<any> {
-    console.log('Login attempt for:', email); // Log the attempt
-
+    console.log('Login attempt for:', email);
+    console.log(res.cookie('ky', 'value'));
     const user = await this.todoService.findOneByEmail(email);
-    console.log('User found:', user); // Log the user result
+    console.log('User found:', user);
 
     if (!user) {
       console.log('User not found');
@@ -28,7 +24,7 @@ export class AuthService {
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
-    console.log('Password match:', isMatch); // Log the password match result
+    console.log('Password match:', isMatch);
 
     if (!isMatch) {
       console.log('Invalid credentials');
@@ -37,18 +33,17 @@ export class AuthService {
 
     const payload = { sub: user._id, email: user.email };
     const token = await this.jwtService.signAsync(payload);
-    console.log('JWT Token:', token); // Log the JWT token
+    console.log('JWT Token:', token);
 
     // Setting the cookie
-    res.cookie('jwt', token, {
+    res.cookie('jwt', `Bearer ${token}`, {
       httpOnly: true,
-      secure: false, // Set to false for local development
+      secure: false,
       sameSite: 'strict',
     });
 
     console.log('Cookie set successfully');
 
-    // Return the user details without password
     return {
       user: {
         id: user._id,

@@ -22,11 +22,7 @@ Content-Type: application/json
 
 ###Find all todos
 
-get https://todo-nest-2smq.vercel.app/todo
-
-
-
-
+GET http://localhost:3000/todo
 
 
 
