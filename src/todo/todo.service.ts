@@ -50,7 +50,11 @@ export class TodoService {
     );
     if (!updatedUser)
       throw new NotFoundException(`Todo with ID ${id} not found`);
-    return updatedUser;
+    return {
+      success: true,
+      message: `User with ID ${id} has been successfully updated`,
+      data: updatedUser,
+    };
   }
 
   async remove(id: string) {
@@ -60,6 +64,9 @@ export class TodoService {
       throw new NotFoundException(`Todo with ID ${id} not found`);
     }
 
-    return deletedTodo;
+    return {
+      success: true,
+      message: `User with ID ${id} has been successfully deleted`,
+    };
   }
 }

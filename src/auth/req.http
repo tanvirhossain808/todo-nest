@@ -44,14 +44,14 @@ GET  http://localhost:3000/todo
 
 ### find a current user
 
-get  http://localhost:3000/todo/67b35a5b1679d2cbffd8d695
+get  http://localhost:3000/todo/67bef0502b32a8c7d5dd8f97
 
 
 
 
 ### Update todo
 
-PATCH  http://localhost:3000/todo/67be2fc7b45e038c7ee66cca
+PATCH  http://localhost:3000/todo/67bef0502b32a8c7d5dd8f97
 Content-Type: application/json
 
 
@@ -64,7 +64,7 @@ Content-Type: application/json
 
 ### Delete a todo
 
-DELETE   https://todo-nest-2smq.vercel.app/todo/67b2ff16ef09c11bebb36a0b
+DELETE   https://todo-nest-2smq.vercel.app/todo/67bef0502b32a8c7d5dd8f97
 Content-Type: application/json
 
 

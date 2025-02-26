@@ -55,14 +55,21 @@ let TodoService = class TodoService {
         });
         if (!updatedUser)
             throw new common_1.NotFoundException(`Todo with ID ${id} not found`);
-        return updatedUser;
+        return {
+            success: true,
+            message: `User with ID ${id} has been successfully updated`,
+            data: updatedUser,
+        };
     }
     async remove(id) {
         const deletedTodo = await this.todoModel.findByIdAndDelete(id);
         if (!deletedTodo) {
             throw new common_1.NotFoundException(`Todo with ID ${id} not found`);
         }
-        return deletedTodo;
+        return {
+            success: true,
+            message: `User with ID ${id} has been successfully deleted`,
+        };
     }
 };
 exports.TodoService = TodoService;

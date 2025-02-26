@@ -30,14 +30,17 @@ export declare class TodoService {
     }> & {
         __v: number;
     }>;
-    update(id: string, updateTodoDto: UpdateTodoDto): Promise<import("mongoose").Document<unknown, {}, Todo> & Todo & Required<{
-        _id: unknown;
-    }> & {
-        __v: number;
+    update(id: string, updateTodoDto: UpdateTodoDto): Promise<{
+        success: boolean;
+        message: string;
+        data: import("mongoose").Document<unknown, {}, Todo> & Todo & Required<{
+            _id: unknown;
+        }> & {
+            __v: number;
+        };
     }>;
-    remove(id: string): Promise<import("mongoose").Document<unknown, {}, Todo> & Todo & Required<{
-        _id: unknown;
-    }> & {
-        __v: number;
+    remove(id: string): Promise<{
+        success: boolean;
+        message: string;
     }>;
 }
