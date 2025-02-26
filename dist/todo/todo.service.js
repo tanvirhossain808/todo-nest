@@ -26,7 +26,7 @@ let TodoService = class TodoService {
         return newUser.save();
     }
     async create(createTodoDto, id) {
-        const newUser = new this.todoModel({ createTodoDto, user: id });
+        const newUser = new this.todoModel({ ...createTodoDto, user: id });
         return newUser.save();
     }
     async findAll(id) {
@@ -43,16 +43,25 @@ let TodoService = class TodoService {
     }
     async findOneByEmail(email) {
         const currentUser = await this.todoModel.findOne({ email });
+        if (!currentUser)
+            throw new common_1.NotFoundException(`User not found with email ${email}`);
         console.log(currentUser, 'currentUser');
         return currentUser;
     }
     async update(id, updateTodoDto) {
-        const updatedUser = await this.todoModel.findByIdAndUpdate(id, updateTodoDto);
+        const updatedUser = await this.todoModel.findByIdAndUpdate(id, updateTodoDto, {
+            new: true,
+        });
+        if (!updatedUser)
+            throw new common_1.NotFoundException(`Todo with ID ${id} not found`);
         return updatedUser;
     }
     async remove(id) {
-        const removedUser = await this.todoModel.findByIdAndDelete(id);
-        return removedUser;
+        const deletedTodo = await this.todoModel.findByIdAndDelete(id);
+        if (!deletedTodo) {
+            throw new common_1.NotFoundException(`Todo with ID ${id} not found`);
+        }
+        return deletedTodo;
     }
 };
 exports.TodoService = TodoService;

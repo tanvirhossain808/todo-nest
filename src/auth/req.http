@@ -39,7 +39,7 @@ Content-Type: application/json
 ###Find all todos
 
 
-GET http://localhost:3000/todo
+GET https://todo-nest-2smq.vercel.app/todo
 
 
 ### find a current user
