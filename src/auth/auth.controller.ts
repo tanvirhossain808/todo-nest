@@ -4,6 +4,7 @@ import { AuthService } from './auth.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { Response } from 'express';
 import { Public } from 'src/common/decorators/public.decorator';
+// import { Public } from '../../src/common/decorators/public.decorator';
 
 @Public()
 @Controller('auth')
