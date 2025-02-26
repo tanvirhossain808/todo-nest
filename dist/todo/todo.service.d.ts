@@ -20,7 +20,7 @@ export declare class TodoService {
     }> & {
         __v: number;
     })[]>;
-    findOne(id: string): Promise<import("mongoose").Document<unknown, {}, Todo> & Todo & Required<{
+    findOne(id: string, userId: string | undefined): Promise<import("mongoose").Document<unknown, {}, Todo> & Todo & Required<{
         _id: unknown;
     }> & {
         __v: number;

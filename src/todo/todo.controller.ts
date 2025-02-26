@@ -22,7 +22,6 @@ export class TodoController {
     @Body() createTodoDto: CreateTodoDto,
     @Req() request: CustomRequest,
   ) {
-    console.log(request.user);
     return this.todoService.create(createTodoDto, request.user.sub);
   }
 
@@ -33,17 +32,25 @@ export class TodoController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.todoService.findOne(id);
+  findOne(@Param('id') id: string, @Req() request: CustomRequest) {
+    console.log(request?.user?.sub);
+    return this.todoService.findOne(id, request?.user?.sub);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateTodoDto: UpdateTodoDto) {
+  async update(
+    @Param('id') id: string,
+    @Body() updateTodoDto: UpdateTodoDto,
+    @Req() request: CustomRequest,
+  ) {
+    await this.todoService.findOne(id, request?.user?.sub);
     return this.todoService.update(id, updateTodoDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  async remove(@Param('id') id: string, @Req() request: CustomRequest) {
+    // console.log(first)
+    await this.todoService.findOne(id, request?.user?.sub);
     return this.todoService.remove(id);
   }
 }

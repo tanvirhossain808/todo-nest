@@ -22,20 +22,22 @@ let TodoController = class TodoController {
         this.todoService = todoService;
     }
     async create(createTodoDto, request) {
-        console.log(request.user);
         return this.todoService.create(createTodoDto, request.user.sub);
     }
     async findAll(request) {
         console.log(request.user, 'request');
         return this.todoService.findAll(request.user.sub);
     }
-    findOne(id) {
-        return this.todoService.findOne(id);
+    findOne(id, request) {
+        console.log(request?.user?.sub);
+        return this.todoService.findOne(id, request?.user?.sub);
     }
-    update(id, updateTodoDto) {
+    async update(id, updateTodoDto, request) {
+        await this.todoService.findOne(id, request?.user?.sub);
         return this.todoService.update(id, updateTodoDto);
     }
-    remove(id) {
+    async remove(id, request) {
+        await this.todoService.findOne(id, request?.user?.sub);
         return this.todoService.remove(id);
     }
 };
@@ -58,24 +60,27 @@ __decorate([
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Req)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [String, Object]),
     __metadata("design:returntype", void 0)
 ], TodoController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Patch)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
+    __param(2, (0, common_1.Req)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, update_todo_dto_1.UpdateTodoDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:paramtypes", [String, update_todo_dto_1.UpdateTodoDto, Object]),
+    __metadata("design:returntype", Promise)
 ], TodoController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Req)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:returntype", Promise)
 ], TodoController.prototype, "remove", null);
 exports.TodoController = TodoController = __decorate([
     (0, common_1.Controller)('todo'),

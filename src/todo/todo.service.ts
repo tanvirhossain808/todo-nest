@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { HttpException, Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { UpdateTodoDto } from './dto/update-todo.dto';
 import { InjectModel } from '@nestjs/mongoose';
@@ -25,11 +25,15 @@ export class TodoService {
     return allUser;
   }
 
-  async findOne(id: string) {
+  async findOne(id: string, userId: string | undefined) {
+    console.log(userId, 'userId');
     const currentUser = await this.todoModel.findById(id);
-    console.log(currentUser, 'nul');
+    console.log(currentUser, 'cr');
     if (!currentUser)
       throw new NotFoundException(`Todo with ID ${id} not found`);
+    if (userId !== currentUser?.user) {
+      throw new NotFoundException(`You are not authorized to access this todo`);
+    }
     return currentUser;
   }
   async findOneByEmail(email: string) {

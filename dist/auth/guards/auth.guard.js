@@ -35,7 +35,6 @@ let AuthGuard = class AuthGuard {
         }
         const request = context.switchToHttp().getRequest();
         const token = this.extractTokenFromHeader(request);
-        console.log(request.cookies);
         if (!token) {
             throw new common_1.UnauthorizedException();
         }
@@ -48,7 +47,6 @@ let AuthGuard = class AuthGuard {
             if (!userExists) {
                 throw new common_1.ForbiddenException('User not found');
             }
-            console.log(payload, 'payload');
             request['user'] = payload;
         }
         catch (error) {
@@ -58,10 +56,8 @@ let AuthGuard = class AuthGuard {
         return true;
     }
     extractTokenFromHeader(request) {
-        console.log(request.headers, 'headers');
         const { jwt } = request.cookies || {};
         const [type, token] = jwt?.split(' ') ?? [];
-        console.log(token, 'tokenaaa');
         return type === 'Bearer' ? token : undefined;
     }
 };

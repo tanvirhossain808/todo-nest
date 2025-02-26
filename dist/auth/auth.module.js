@@ -21,9 +21,7 @@ const auth_guard_1 = require("./guards/auth.guard");
 const mongoose_1 = require("@nestjs/mongoose");
 const user_schemas_1 = require("../schemas/user.schemas");
 let AuthModule = class AuthModule {
-    constructor() {
-        console.log(process.env.JWT_SECRET);
-    }
+    constructor() { }
 };
 exports.AuthModule = AuthModule;
 exports.AuthModule = AuthModule = __decorate([

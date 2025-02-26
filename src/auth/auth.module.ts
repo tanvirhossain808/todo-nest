@@ -30,7 +30,5 @@ import { User, UserSchema } from 'src/schemas/user.schemas';
   ],
 })
 export class AuthModule {
-  constructor() {
-    console.log(process.env.JWT_SECRET);
-  }
+  constructor() {}
 }

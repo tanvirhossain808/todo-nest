@@ -35,11 +35,15 @@ let TodoService = class TodoService {
             .select('id title description completed');
         return allUser;
     }
-    async findOne(id) {
+    async findOne(id, userId) {
+        console.log(userId, 'userId');
         const currentUser = await this.todoModel.findById(id);
-        console.log(currentUser, 'nul');
+        console.log(currentUser, 'cr');
         if (!currentUser)
             throw new common_1.NotFoundException(`Todo with ID ${id} not found`);
+        if (userId !== currentUser?.user) {
+            throw new common_1.NotFoundException(`You are not authorized to access this todo`);
+        }
         return currentUser;
     }
     async findOneByEmail(email) {

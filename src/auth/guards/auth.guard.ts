@@ -34,7 +34,6 @@ export class AuthGuard implements CanActivate {
     const token = this.extractTokenFromHeader(request);
     // const token = request.cookies?.jwt;
     // const token
-    console.log(request.cookies);
     if (!token) {
       throw new UnauthorizedException();
     }
@@ -47,7 +46,6 @@ export class AuthGuard implements CanActivate {
       if (!userExists) {
         throw new ForbiddenException('User not found');
       }
-      console.log(payload, 'payload');
       request['user'] = payload;
     } catch (error) {
       console.log(error, 'guard error');
@@ -56,10 +54,8 @@ export class AuthGuard implements CanActivate {
     return true;
   }
   private extractTokenFromHeader(request: Request): string | undefined {
-    console.log(request.headers, 'headers');
     const { jwt } = request.cookies || {};
     const [type, token] = jwt?.split(' ') ?? [];
-    console.log(token, 'tokenaaa');
     return type === 'Bearer' ? token : undefined;
   }
 

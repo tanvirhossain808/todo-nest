@@ -15,12 +15,12 @@ export declare class TodoController {
     }> & {
         __v: number;
     })[]>;
-    findOne(id: string): Promise<import("mongoose").Document<unknown, {}, import("../schemas/todo.schemas").Todo> & import("../schemas/todo.schemas").Todo & Required<{
+    findOne(id: string, request: CustomRequest): Promise<import("mongoose").Document<unknown, {}, import("../schemas/todo.schemas").Todo> & import("../schemas/todo.schemas").Todo & Required<{
         _id: unknown;
     }> & {
         __v: number;
     }>;
-    update(id: string, updateTodoDto: UpdateTodoDto): Promise<{
+    update(id: string, updateTodoDto: UpdateTodoDto, request: CustomRequest): Promise<{
         success: boolean;
         message: string;
         data: import("mongoose").Document<unknown, {}, import("../schemas/todo.schemas").Todo> & import("../schemas/todo.schemas").Todo & Required<{
@@ -29,7 +29,7 @@ export declare class TodoController {
             __v: number;
         };
     }>;
-    remove(id: string): Promise<{
+    remove(id: string, request: CustomRequest): Promise<{
         success: boolean;
         message: string;
     }>;
