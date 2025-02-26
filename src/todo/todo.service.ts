@@ -27,7 +27,9 @@ export class TodoService {
 
   async findOne(id: string) {
     const currentUser = await this.todoModel.findById(id);
-    if (!currentUser) new HttpException('User not found', 400);
+    console.log(currentUser, 'nul');
+    if (!currentUser)
+      throw new NotFoundException(`Todo with ID ${id} not found`);
     return currentUser;
   }
   async findOneByEmail(email: string) {

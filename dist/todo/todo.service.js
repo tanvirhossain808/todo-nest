@@ -37,8 +37,9 @@ let TodoService = class TodoService {
     }
     async findOne(id) {
         const currentUser = await this.todoModel.findById(id);
+        console.log(currentUser, 'nul');
         if (!currentUser)
-            new common_1.HttpException('User not found', 400);
+            throw new common_1.NotFoundException(`Todo with ID ${id} not found`);
         return currentUser;
     }
     async findOneByEmail(email) {
