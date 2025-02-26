@@ -12,7 +12,8 @@ export class Todo extends Document {
 
   @Prop({ required: true, default: false })
   completed: boolean;
-  @Prop({ unique: true, type: Types.ObjectId, ref: 'User', required: true })
+
+  @Prop({ type: Types.ObjectId, ref: 'User', required: true })
   user: string;
 }
 

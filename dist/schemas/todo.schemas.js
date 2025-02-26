@@ -28,7 +28,7 @@ __decorate([
     __metadata("design:type", Boolean)
 ], Todo.prototype, "completed", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ unique: true, type: mongoose_2.Types.ObjectId, ref: 'User', required: true }),
+    (0, mongoose_1.Prop)({ type: mongoose_2.Types.ObjectId, ref: 'User', required: true }),
     __metadata("design:type", String)
 ], Todo.prototype, "user", void 0);
 exports.Todo = Todo = __decorate([

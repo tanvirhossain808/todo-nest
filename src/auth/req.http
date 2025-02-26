@@ -22,20 +22,23 @@ GEt http://localhost:3000/auth/signout
 POST http://localhost:3000/auth/login
 Content-Type: application/json
 
+# {
+#     "email":"tanvir@t.com",
+#     "password":"password"
+# }
 {
-    "email":"tanvir@t.com",
-    "password":"password"
-}
-
+  "email":"tanvir@gmail.com",
+  "password":"b@b.com"
+   }
 ###add user
 
 POST http://localhost:3000/todo
 Content-Type: application/json
 
 {
-  "title": "e45",
-  "description": "fd4",
-  "completed":false
+  "title": "e45w",
+  "description": "fdd4",
+  "completed":true
 }
 
 
@@ -48,14 +51,14 @@ GET  http://localhost:3000/todo
 
 ### find a current user
 
-get  http://localhost:3000/todo/67beff8596b88f3e79eb16b5
+get  http://localhost:3000/todo/67bf0689c4604e1456afab8c
 
 
 
 
 ### Update todo
 
-PATCH  http://localhost:3000/todo/67bf005b96b88f3e79eb16d2
+PATCH  http://localhost:3000/todo/67bf0689c4604e1456afab8c
 Content-Type: application/json
 
 
@@ -68,7 +71,7 @@ Content-Type: application/json
 
 ### Delete a todo
 
-DELETE   http://localhost:3000/todo/67bef7b9f536010ced6b5823
+DELETE   http://localhost:3000/todo/67bf0689c4604e1456afab8c
 Content-Type: application/json
 
 
