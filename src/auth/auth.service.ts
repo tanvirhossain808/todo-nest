@@ -71,6 +71,7 @@ export class AuthService {
     const hashedPassword = await bcrypt.hash(password, saltOrRounds);
     const newUser = new this.userModel({ email, password: hashedPassword });
     newUser.save();
-    return { user: newUser };
+
+    return { user: { email: user.email } };
   }
 }

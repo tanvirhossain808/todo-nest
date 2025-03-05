@@ -38,7 +38,7 @@ Content-Type: application/json
 {
   "title": "e45w",
   "description": "fdd4",
-  "completed":true
+  "completed":false
 }
 
 
