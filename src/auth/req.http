@@ -8,7 +8,7 @@ Content-Type: application/json
 #   "password":"b@b.com"
 # }
 {
-    "email":"tanvir@t.com",
+    "email":"tanvisar@t.com",
     "password":"password"
 }
 ###sign out
